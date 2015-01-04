@@ -16,3 +16,4 @@ public class GameManager : MonoBehaviour {
 		cam.SetTarget((Instantiate(player,Vector3.zero,Quaternion.identity) as GameObject).transform);
 	}
 }
+ 

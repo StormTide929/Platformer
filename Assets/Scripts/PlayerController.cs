@@ -11,6 +11,8 @@ public class PlayerController : Entity {
 	public float acceleration = 30;
 	public float jumpHeight = 12;
 	public float slideDeceleration = 10;
+
+	private float initiateSlideThreshold = 6;
 	
 	// System
 	private float animationSpeed;
@@ -23,6 +25,7 @@ public class PlayerController : Entity {
 	private bool jumping;
 	private bool sliding;
 	private bool wallHolding;
+	private bool stopSliding;
 
 
 	// Components
@@ -62,7 +65,8 @@ public class PlayerController : Entity {
 			
 			// Slide logic
 			if (sliding) {
-				if (Mathf.Abs(currentSpeed) < .25f) {
+				if (Mathf.Abs(currentSpeed) < .25f || stopSliding) {
+					stopSliding = false;
 					sliding = false;
 					animator.SetBool("Sliding",false);
 					playerPhysics.ResetCollider();
@@ -71,11 +75,13 @@ public class PlayerController : Entity {
 			
 			// Slide Input
 			if (Input.GetButtonDown("Slide")) {
-				sliding = true;
-				animator.SetBool("Sliding",true);
-				targetSpeed = 0;
-				
-				playerPhysics.SetCollider(new Vector3(10.3f,1.5f,3), new Vector3(.35f,.75f,0));
+				if (Mathf.Abs(currentSpeed) > initiateSlideThreshold) {
+					sliding = true;
+					animator.SetBool("Sliding",true);
+					targetSpeed = 0;
+					
+					playerPhysics.SetCollider(new Vector3(10.3f,1.5f,3), new Vector3(.35f,.75f,0));
+				}
 			}
 		}
 		else {
@@ -89,7 +95,10 @@ public class PlayerController : Entity {
 		
 		// Jump Input
 		if (Input.GetButtonDown("Jump")) {
-			if (playerPhysics.grounded || wallHolding) {
+			if (sliding) {
+				stopSliding = true;
+			}
+			else if (playerPhysics.grounded || wallHolding) {
 				amountToMove.y = jumpHeight;
 				jumping = true;
 				animator.SetBool("Jumping",true);

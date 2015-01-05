@@ -34,9 +34,13 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds(secondsToWaitAfteryDying);
 		//get array of all player ragdoll instances for destruction
 		GameObject[] allPlayerRagdolls = GameObject.FindGameObjectsWithTag("PlayerRagdoll");
+		GameObject[] allPlayerBloodSplashes = GameObject.FindGameObjectsWithTag("PlayerBloodSplash");
 		//destroy them (player dead bodies)
-	    for (int i=0; i<allPlayerRagdolls.Length; i++){
+	    for (int i=0; i < allPlayerRagdolls.Length; i++){
 	    	Destroy(allPlayerRagdolls[i]);
+	    }
+	    for (int i=0; i < allPlayerBloodSplashes.Length; i++){
+	    	Destroy(allPlayerBloodSplashes[i]);
 	    }
 		SpawnPlayer(Vector3.zero);
 		diedWait=true;

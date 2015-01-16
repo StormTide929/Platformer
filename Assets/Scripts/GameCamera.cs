@@ -5,7 +5,6 @@ public class GameCamera : MonoBehaviour {
 	
 	private Transform target;
 	public float trackSpeed = 25;
-	public float distance = 1;
 	
 	
 	// Set target
@@ -18,7 +17,7 @@ public class GameCamera : MonoBehaviour {
 		if (target) {
 			float x = IncrementTowards(transform.position.x, target.position.x, trackSpeed);
 			float y = IncrementTowards(transform.position.y, target.position.y, trackSpeed);
-			transform.position = new Vector3(x,y, transform.position.z - distance);
+			transform.position = new Vector3(x,y, transform.position.z);
 		}
 	}
 	

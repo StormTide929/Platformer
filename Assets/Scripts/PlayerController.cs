@@ -110,7 +110,6 @@ public class PlayerController : Entity {
 			}
 		}
 		
-		
 		// Set animator parameters
 		animationSpeed = IncrementTowards(animationSpeed,Mathf.Abs(targetSpeed),acceleration);
 		animator.SetFloat("Speed",animationSpeed);
@@ -140,7 +139,9 @@ public class PlayerController : Entity {
 				amountToMove.y = 0;	
 			}
 		}
-		
+		if(jumping && !Input.GetButton("Jump") && amountToMove.y > 0){
+			amountToMove.y--;
+		}
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move(amountToMove * Time.deltaTime, moveDirX);
 	

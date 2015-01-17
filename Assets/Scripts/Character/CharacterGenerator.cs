@@ -25,16 +25,9 @@ public class CharacterGenerator : MonoBehaviour {
 
 	public GUISkin myskin;
 
-	public GameObject playerPrefab;
-
 	// Use this for initialization
 	void Start () {
-		GameObject pc = Instantiate (playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-		PlayerController pcScript = pc.GetComponent<PlayerController>();
-		pcScript.gravity = 0;
-		pc.name = "pc";
-		//_toon = new PlayerCharacter();
-		_toon = pc.GetComponent<PlayerCharacter>();
+		_toon = new PlayerCharacter();
 		_toon.Awake();
 
 		pointsLeft = STARTING_POINTS;
@@ -58,7 +51,6 @@ public class CharacterGenerator : MonoBehaviour {
 		DisplayVitals();
 		GUI.skin = myskin;
 		DisplaySkills();
-		DisplayCreateButton();
 	}
 	private void DisplayName(){
 		GUI.Label(new Rect(30, 20, 50, 25), "Name: ");
@@ -134,16 +126,5 @@ public class CharacterGenerator : MonoBehaviour {
 		                   100, 
 		                   25), 
 		          			"Points Left: " + pointsLeft.ToString());
-	}
-	private void DisplayCreateButton(){
-		if(GUI.Button (new Rect(Screen.width / 2 - 50, 
-		                  	statStartingPos + (18 * LINE_HEIGHT), 
-		                    100, 
-		                    LINE_HEIGHT), "CREATE")){
-
-			GameSettings gsScript = GameObject.Find("__GameSettings").GetComponent<GameSettings>();
-			gsScript.SaveCharacterData();
-			Application.LoadLevel("Level_01");
-		}
 	}
 }

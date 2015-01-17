@@ -16,10 +16,13 @@
 }
 
 public enum SkillName {
-	Melee_Offense,
-	Melee_Defense,
-	Ranged_Offense,
-	Ranged_Defense,
-	Magic_Offense,
-	Magic_Defense
+	Melee_Damage,
+	Knockback_Resistance,
+	Physical_Resistance,
+	Psionic_Resistance,
+	Psionic_Power,
+	Magic_Resistance,
+	Spell_Power,
+	Skill_Points,
+	Mastery_Chance
 }

@@ -7,11 +7,9 @@ public class Attribute : BaseStat {
 }
 
 public enum AttributeName{
-	Might,
-	Constitution,
-	Nimbleness,
-	Speed,
-	Concentration,
+	Strength,
+	Fortitude,
 	Willpower,
-	Charisma
+	Spirit,
+	Intellect
 }

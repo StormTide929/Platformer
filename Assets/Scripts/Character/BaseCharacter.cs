@@ -78,31 +78,31 @@ public class BaseCharacter : MonoBehaviour { //inherits MonoBehaviour to let us 
 	private void SetupVitalModifiers(){
 		//add half of primary attribute to vital
 		//health
-		GetVital((int)VitalName.Health).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Constitution), ratio = 1});
+		GetVital((int)VitalName.Health).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Fortitude), ratio = 3});
 		//energy
-		GetVital((int)VitalName.Energy).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Constitution ), ratio = 1});
+		GetVital((int)VitalName.Energy).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Willpower ), ratio = 2.5f});
 		//mana
-		GetVital((int)VitalName.Mana).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Willpower), ratio = 1});
+		GetVital((int)VitalName.Mana).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Spirit), ratio = 4.5f});
 	}
 	private void SetupSkillModifiers(){
-		//melee offense
-		GetSkill((int)SkillName.Melee_Offense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Might), ratio = .33f});
-		GetSkill((int)SkillName.Melee_Offense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Nimbleness), ratio = .33f});
-		//melee defense
-		GetSkill((int)SkillName.Melee_Defense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Speed), ratio = .33f});
-		GetSkill((int)SkillName.Melee_Defense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Constitution), ratio = .33f});
-		//ranged offense
-		GetSkill((int)SkillName.Ranged_Offense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Concentration), ratio = .33f});
-		GetSkill((int)SkillName.Ranged_Offense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Willpower), ratio = .33f});
-		//ranged defense
-		GetSkill((int)SkillName.Ranged_Defense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Concentration), ratio = .33f});
-		GetSkill((int)SkillName.Ranged_Defense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Willpower), ratio = .33f});
-		//magic offense
-		GetSkill((int)SkillName.Magic_Offense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Concentration), ratio = .33f});
-		GetSkill((int)SkillName.Magic_Offense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Speed), ratio = .33f});
-		//magic defense
-		GetSkill((int)SkillName.Magic_Defense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Speed), ratio = .33f});
-		GetSkill((int)SkillName.Magic_Defense).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Nimbleness), ratio = .33f});
+		//Melee Damage
+		GetSkill((int)SkillName.Melee_Damage).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Strength), ratio = .33f});
+		//Knockback Resistance
+		GetSkill((int)SkillName.Knockback_Resistance).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Strength), ratio = .33f});
+		//Physical Resistance
+		GetSkill((int)SkillName.Physical_Resistance).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Fortitude), ratio = .33f});
+		//Psionic Resistance
+		GetSkill((int)SkillName.Psionic_Resistance).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Willpower), ratio = .33f});
+		//Psionic Power
+		GetSkill((int)SkillName.Psionic_Power).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Willpower), ratio = .33f});
+		//Magic Resistance
+		GetSkill((int)SkillName.Magic_Resistance).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Spirit), ratio = .33f});
+		//Spell Power
+		GetSkill((int)SkillName.Spell_Power).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Spirit), ratio = .33f});
+		//Skill Points
+		GetSkill((int)SkillName.Skill_Points).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Intellect), ratio = .33f});
+		//Mastery Chance
+		GetSkill((int)SkillName.Mastery_Chance).AddModifier(new ModifyingAttribute{attribute = GetPrimaryAttribute((int)AttributeName.Intellect), ratio = .33f});
 	}
 
 	public void StatUpdate(){

@@ -5,23 +5,25 @@ public class GameCamera : MonoBehaviour {
 	
 	private Transform target;
 	public float trackSpeed = 25;
-	
-	
-	// Set target
-	public void SetTarget(Transform t) {
-		target = t;
-	}
-	
+	public float yOffset = 4;
+	public float zOffset = 30;
+
 	// Track target
 	void LateUpdate() {
 		if (target) {
 			float x = IncrementTowards(transform.position.x, target.position.x, trackSpeed);
-			float y = IncrementTowards(transform.position.y, target.position.y+4, trackSpeed);
+			float y = IncrementTowards(transform.position.y, target.position.y + yOffset, trackSpeed);
 			
-			transform.position = new Vector3(x,y, transform.position.z);
+			transform.position = new Vector3(x,y, target.transform.position.z + zOffset);
 		}
 	}
-	
+
+	// Set target
+	public void SetTarget(Transform t) {
+		target = t;
+	}
+
+
 	// Increase n towards target by speed
 	private float IncrementTowards(float n, float target, float a) {
 		if (n == target) {

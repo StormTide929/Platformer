@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameMaster : MonoBehaviour {
 	
 	public GameObject player;
 	private GameObject currentPlayer;
-	private GameCamera cam;
+	public GameCamera cam;
 	private bool diedWait;
 	private int secondsToWaitAfteryDying;
 
@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour {
     }
 
 	void Start () {
-		cam = GetComponent<GameCamera>();
 		SpawnPlayer(Vector3.zero);
 		diedWait = true;
 		secondsToWaitAfteryDying = 4;

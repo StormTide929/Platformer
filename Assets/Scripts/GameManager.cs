@@ -1,20 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-public class Creature{
-	public int hitPoints_current;
-	public int hitPoints_max;
-	public int mana_current;
-	public int mana_max;
-	public int mana_regen;
-	public int runAcceleration;
-	public int runMaxSpeed; 
-	public int jumpHeight;
-	public int level;
-	public int experience_current;
-	public int experience_max;
-}
-
 public class GameManager : MonoBehaviour {
 	
 	public GameObject player;
@@ -23,21 +9,8 @@ public class GameManager : MonoBehaviour {
 	private bool diedWait;
 	private int secondsToWaitAfteryDying;
 
-	public Creature playerStats = new Creature();
-
 	void Awake() {
         DontDestroyOnLoad(transform.gameObject);
-        playerStats.hitPoints_current = 10;
-        playerStats.hitPoints_max = 10;
-        playerStats.mana_current = 10;
-        playerStats.mana_max = 40;
-        playerStats.mana_regen = 3;
-        playerStats.runAcceleration = 28;
-        playerStats.runMaxSpeed = 12;
-        playerStats.jumpHeight = 14;
-        playerStats.level = 1;
-        playerStats.experience_current = 0;
-        playerStats.experience_max = 300;
     }
 
 	void Start () {

@@ -58,7 +58,10 @@ public class CharacterGenerator : MonoBehaviour {
 		DisplayVitals();
 		GUI.skin = myskin;
 		DisplaySkills();
-		DisplayCreateButton();
+		if(_toon.Name == "")
+			DisplayCreateLabel();
+		else
+			DisplayCreateButton();
 	}
 	private void DisplayName(){
 		GUI.Label(new Rect(30, 20, 50, 25), "Name: ");
@@ -135,6 +138,14 @@ public class CharacterGenerator : MonoBehaviour {
 		                   25), 
 		          			"Points Left: " + pointsLeft.ToString());
 	}
+
+	private void DisplayCreateLabel(){
+		GUI.Label (new Rect(Screen.width / 2 - 50, 
+		                     statStartingPos + (18 * LINE_HEIGHT), 
+		                     100, 
+		                     LINE_HEIGHT), "Create");
+	}
+
 	private void DisplayCreateButton(){
 		if(GUI.Button (new Rect(Screen.width / 2 - 50, 
 		                  	statStartingPos + (18 * LINE_HEIGHT), 
@@ -142,8 +153,17 @@ public class CharacterGenerator : MonoBehaviour {
 		                    LINE_HEIGHT), "CREATE")){
 
 			GameSettings gsScript = GameObject.Find("__GameSettings").GetComponent<GameSettings>();
+
+			//change the cur value of the vitals to the max modified value of that vital
+			UpdateCurrentVitalValues();
+
 			gsScript.SaveCharacterData();
 			Application.LoadLevel("Level_01");
+		}
+	}
+	private void UpdateCurrentVitalValues(){
+		for(int cnt = 0; cnt < Enum.GetValues(typeof(VitalName)).Length; cnt++){
+			_toon.GetVital(cnt).CurValue = _toon.GetVital(cnt).AdjustedBaseValue;
 		}
 	}
 }

@@ -5,8 +5,10 @@ using System;         //added to access enum class
 public class BaseCharacter : MonoBehaviour { //inherits MonoBehaviour to let us click and drag onto a game object
 
 	private string _name;
-	private int _level;
-	private uint _freeExp;
+	private int _level;    //players current level
+	private uint _curExp;  //current experience
+	private uint _tnlExp;  //to next level experience
+	private float _tnlRatio; //ratio of curExp to calculate tnlExp
 
 	private Attribute[] _primaryAttribute;
 	private Vital[] _vital;
@@ -15,7 +17,8 @@ public class BaseCharacter : MonoBehaviour { //inherits MonoBehaviour to let us 
 	public void Awake(){
 		_name = string.Empty;
 		_level = 1;
-		_freeExp = 0;
+		_curExp = 0;
+		_tnlRatio = 1.5f;
 
 		_primaryAttribute = new Attribute[Enum.GetValues(typeof(AttributeName)).Length];
 		_vital = new Vital[Enum.GetValues(typeof(VitalName)).Length];
@@ -37,12 +40,12 @@ public class BaseCharacter : MonoBehaviour { //inherits MonoBehaviour to let us 
 	}
 
 	public uint FreeExp {
-		get{return _freeExp;}
-		set{_freeExp = value;}
+		get{return _curExp;}
+		set{_curExp = value;}
 	}
 
 	public void AddExp(uint exp){
-		_freeExp += exp;
+		_curExp += exp;
 		CalculateLevel();
 	}
 	//take avg of all of players skills and assign that as the player level?
@@ -52,6 +55,7 @@ public class BaseCharacter : MonoBehaviour { //inherits MonoBehaviour to let us 
 	private void SetupPrimaryAttributes(){
 		for(int cnt = 0; cnt < _primaryAttribute.Length; cnt++){
 			_primaryAttribute[cnt] = new Attribute();
+			_primaryAttribute[cnt].Name = ((AttributeName)cnt).ToString();
 		}
 	}
 	private void SetupVitals(){

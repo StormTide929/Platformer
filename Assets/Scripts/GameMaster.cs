@@ -4,8 +4,11 @@ using System.Collections;
 public class GameMaster : MonoBehaviour {
 	
 	public GameObject player;
-	private GameObject currentPlayer;
-	public GameCamera cam;
+	public GameCamera mainCamera;
+	public GameObject gameSettings;
+
+	private GameObject _pc;
+	private PlayerCharacter _pcScript;
 	private bool diedWait;
 	private int secondsToWaitAfteryDying;
 
@@ -15,21 +18,36 @@ public class GameMaster : MonoBehaviour {
 
 	void Start () {
 		SpawnPlayer(Vector3.zero);
+		LoadCharacter();
 		diedWait = true;
 		secondsToWaitAfteryDying = 4;
 	}
-	
-	// Spawn player
-	private void SpawnPlayer(Vector3 spawnPos) {
-		currentPlayer = Instantiate(player,spawnPos,Quaternion.identity) as GameObject;
-		cam.SetTarget(currentPlayer.transform);
-	}
 
 	private void Update() {
-		if (!currentPlayer) {
+		if (!_pc) {
 			if(diedWait)
 				StartCoroutine(playerDied());
 		}
+	}
+
+	// Spawn player
+	private void SpawnPlayer(Vector3 spawnPos) {
+		_pc = Instantiate(player,spawnPos,Quaternion.identity) as GameObject;
+		_pc.name = "pc";
+
+		_pcScript = _pc.GetComponent<PlayerCharacter>();
+
+		mainCamera.SetTarget(_pc.transform);
+	}
+
+	public void LoadCharacter(){
+		GameObject gs = GameObject.Find("__GameSettings");
+		if(gs == null){
+			GameObject gs1 = Instantiate(gameSettings, Vector3.zero, Quaternion.identity) as GameObject;
+			gs1.name = "__GameSettings";
+		}
+		GameSettings gsScript = GameObject.Find("__GameSettings").GetComponent<GameSettings>();
+		gsScript.LoadCharacterData();
 	}
 
 	IEnumerator playerDied(){

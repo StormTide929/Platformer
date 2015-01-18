@@ -1,10 +1,22 @@
 ﻿
+/// <summary>
+/// BaseStat.cs
+/// Jeff Shumway
+/// Jan 17, 2015
+/// 
+/// This is the base class for all stats in the game
+/// </summary>
+
 public class BaseStat{
+	
 	private int _baseValue;				//base value of this stat
 	private int _buffValue;				//amount of the buff/debuff to this stat
 	private int _expToLevel;             //total amount of exp needed to raise this skill
 	private float _levelModifier;         //mod applied to the exp needed to raise skill
 
+	/// <summary>
+	/// Initializes a new instance of the <see cref="BaseStat"/> class.  
+	/// </summary>
 	public BaseStat(){
 		_baseValue = 0;
 		_buffValue = 0;

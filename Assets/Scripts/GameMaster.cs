@@ -17,7 +17,11 @@ public class GameMaster : MonoBehaviour {
     }
 
 	void Start () {
-		SpawnPlayer(Vector3.zero);
+		GameObject spawnPoint = GameObject.Find(GameSettings.PLAYER_SPAWN_POINT);
+		if(spawnPoint == null){
+			Debug.LogWarning("Cannot find a spawn point in scene");
+		}
+		SpawnPlayer(spawnPoint.transform.position);
 		LoadCharacter();
 		diedWait = true;
 		secondsToWaitAfteryDying = 4;

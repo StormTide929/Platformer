@@ -2,7 +2,7 @@
 using System.Collections;
 using System;         //added to access enum class
 
-public class BaseCharacter : MonoBehaviour { //inherits MonoBehaviour to let us click and drag onto a game object
+public class BaseCharacter : Entity { //inherits MonoBehaviour to let us click and drag onto a game object
 
 	private string _name;
 	private int _level;    //players current level

@@ -33,7 +33,7 @@ public class CharacterGenerator : MonoBehaviour {
 		PlayerController pcScript = pc.GetComponent<PlayerController>();
 		pcScript.gravity = 0;
 		pc.name = "pc";
-		//_toon = new PlayerCharacter();
+
 		_toon = pc.GetComponent<PlayerCharacter>();
 		_toon.Awake();
 

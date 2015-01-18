@@ -6,7 +6,7 @@ public class Entity : MonoBehaviour {
 	public float health;
 	public GameObject ragdoll;
 	public GameObject bloodSplash;
-	
+
 	public void TakeDamage(float dmg) {
 		health -= dmg;
 		//Ragdoll r = (Instantiate(ragdoll,transform.position,transform.rotation) as GameObject).GetComponent<Ragdoll>();
